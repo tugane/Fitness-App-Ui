@@ -6,10 +6,10 @@ const xl: number = 30;
 const xxl: number = 35;
 
 export default {
-    xs,
-    sm,
-    base,
-    lg,
-    xl,
-    xxl,
+  xs,
+  sm,
+  base,
+  lg,
+  xl,
+  xxl,
 };
