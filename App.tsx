@@ -11,7 +11,7 @@ export default function App() {
   return !fontsLoaded ? null : (
     <SafeAreaProvider>
       <Navigation />
-      <StatusBar />
+      <StatusBar style='light' />
     </SafeAreaProvider>
   );
 }

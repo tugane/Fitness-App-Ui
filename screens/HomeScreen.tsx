@@ -17,12 +17,13 @@ import { TouchableOpacity } from "react-native";
 import Rating from "react-native-easy-rating";
 import { Ionicons } from "@expo/vector-icons";
 import CategoryList from "../components/CategoryList";
+import Screen from "../components/Screen";
 
 type Props = NativeStackScreenProps<RootStackParamList, "Home">;
 
 const HomeScreen: React.FC<Props> = ({ navigation }) => {
   return (
-    <SafeAreaView>
+    <Screen>
       <ScrollView
         showsVerticalScrollIndicator={false}
         style={{
@@ -92,7 +93,7 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
             }}
           >
             <Ionicons
-              name="notifications-outline"
+              name='notifications-outline'
               color={Colors.text}
               size={25}
             />
@@ -110,10 +111,10 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
             borderRadius: Spacing.borderRadius.base,
           }}
         >
-          <Ionicons name="search-outline" color={Colors.text} size={25} />
+          <Ionicons name='search-outline' color={Colors.text} size={25} />
           <TextInput
             placeholderTextColor={Colors.text}
-            placeholder="Search Workouts.."
+            placeholder='Search Workouts..'
             style={{
               padding: Spacing.padding.xs,
               fontSize: FontSize.base,
@@ -129,7 +130,7 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
             }}
           >
             <Ionicons
-              name="options-outline"
+              name='options-outline'
               color={Colors.onAccent}
               size={20}
             />
@@ -166,13 +167,16 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
           </View>
           <ScrollView
             snapToInterval={300 + Spacing.margin.lg}
-            decelerationRate="fast"
+            decelerationRate='fast'
             pagingEnabled
             horizontal
             showsHorizontalScrollIndicator={false}
           >
             {workouts.map((workout) => (
               <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate("PlanOverview", { workout: workout })
+                }
                 key={workout.id}
                 style={{
                   width: 300,
@@ -217,7 +221,7 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
                         alignItems: "center",
                       }}
                     >
-                      <Ionicons name="star" size={20} color={Colors.yellow} />
+                      <Ionicons name='star' size={20} color={Colors.yellow} />
                       <Text
                         style={{
                           color: Colors.text,
@@ -315,7 +319,7 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
                     }}
                   >
                     <Ionicons
-                      name="calendar-outline"
+                      name='calendar-outline'
                       color={Colors.text}
                       size={15}
                     />
@@ -356,7 +360,7 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
           </ScrollView>
         </View>
       </ScrollView>
-    </SafeAreaView>
+    </Screen>
   );
 };
 
