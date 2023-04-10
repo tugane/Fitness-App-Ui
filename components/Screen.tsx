@@ -1,24 +1,17 @@
-import {
-  Platform,
-  SafeAreaView,
-  StyleProp,
-  Text,
-  View,
-  ViewStyle,
-} from "react-native";
+import { Platform, SafeAreaView, StyleProp, ViewStyle } from "react-native";
 import React, { ReactNode } from "react";
 
 interface Props {
-  children: ReactNode;
   style?: StyleProp<ViewStyle>;
+  children: ReactNode;
 }
 
-const Screen: React.FC<Props> = ({ children, style }) => {
+const Screen: React.FC<Props> = ({ style, children }) => {
   return (
     <SafeAreaView
       style={[
         {
-          paddingVertical: Platform.OS === "android" ? 30 : 0,
+          paddingTop: Platform.OS === "android" ? 30 : 0,
         },
         style,
       ]}
