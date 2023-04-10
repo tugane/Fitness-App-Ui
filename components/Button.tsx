@@ -4,29 +4,31 @@ import {
   Text,
   TextStyle,
   TouchableOpacity,
+  View,
   ViewStyle,
 } from "react-native";
-import React from "react";
+import React, { ReactNode } from "react";
+import Font from "../constants/Font";
 import FontSize from "../constants/FontSize";
 import Spacing from "../constants/Spacing";
 import Colors from "../constants/Colors";
 
-type Props = {
+interface Props {
   style?: StyleProp<ViewStyle>;
+  children: ReactNode;
   textStyle?: StyleProp<TextStyle>;
-  text: string;
   onPress?: () => void;
-};
+}
 
-const Button: React.FC<Props> = ({ style, textStyle, text, onPress }) => {
+const Button: React.FC<Props> = ({ style, children, textStyle, onPress }) => {
   return (
     <TouchableOpacity
       onPress={onPress}
       style={[
         {
-          paddingHorizontal: Spacing.padding.lg,
-          paddingVertical: Spacing.padding.base,
           backgroundColor: Colors.accent,
+          paddingHorizontal: Spacing.padding.xl,
+          paddingVertical: Spacing.padding.base,
           borderRadius: Spacing.borderRadius.base,
           alignItems: "center",
         },
@@ -36,12 +38,13 @@ const Button: React.FC<Props> = ({ style, textStyle, text, onPress }) => {
       <Text
         style={[
           {
-            fontSize: FontSize.lg,
+            fontSize: FontSize.base,
+            fontFamily: Font["poppins-regular"],
           },
           textStyle,
         ]}
       >
-        {text}
+        {children}
       </Text>
     </TouchableOpacity>
   );

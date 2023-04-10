@@ -1,67 +1,67 @@
-import { ImageBackground, StyleSheet, Text } from "react-native";
+import {
+  Dimensions,
+  ImageBackground,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import React from "react";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { RootStackParamList } from "../types";
 import { LinearGradient } from "expo-linear-gradient";
 import FontSize from "../constants/FontSize";
 import Spacing from "../constants/Spacing";
 import Colors from "../constants/Colors";
+import Font from "../constants/Font";
 import Button from "../components/Button";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../types";
 
 type Props = NativeStackScreenProps<RootStackParamList, "OnBoarding">;
 
 const OnBoardingScreen: React.FC<Props> = ({ navigation: { navigate } }) => {
-  const handlePress = () => {
-    navigate("Home");
-  };
+  const { height } = Dimensions.get("window");
+
+  const handlePress = () => navigate("Home");
+
   return (
     <ImageBackground
+      source={require("../assets/images/onboarding.jpeg")}
       style={{
         flex: 1,
+        justifyContent: "flex-end",
       }}
-      source={require("../assets/images/onboarding.jpeg")}
     >
       <LinearGradient
-        colors={[`rgba(0, 0, 0, 0.123)`, "black"]}
         style={{
-          width: "100%",
-          height: "100%",
-          justifyContent: "flex-end",
-          paddingVertical: Spacing.padding.xxl,
+          height: height / 2.5,
           paddingHorizontal: Spacing.padding.lg,
         }}
-        start={{ x: 0, y: 0.1 }}
+        colors={[`rgba(0,0,0,0.1)`, "#000"]}
       >
         <Text
           style={{
-            color: Colors.text,
             fontSize: FontSize.xxl,
-            fontWeight: "bold",
+            color: Colors.text,
+            fontFamily: Font["poppins-semiBold"],
             textAlign: "center",
-            marginBottom: Spacing.margin.xl,
           }}
         >
           Stay health even if you stay at home
         </Text>
         <Text
           style={{
-            color: Colors.text,
-            textAlign: "center",
-            fontWeight: "500",
             fontSize: FontSize.base,
-            marginBottom: Spacing.margin.xl,
+            color: Colors.text,
+            fontFamily: Font["poppins-regular"],
+            textAlign: "center",
+            marginTop: Spacing.margin.base,
+            marginBottom: Spacing.margin.xxl,
           }}
         >
           Staying fit to keep you in good condition can now go through mobile
           apps
         </Text>
-        <Button
-          style={{
-            marginTop: Spacing.margin.xxl * 2,
-          }}
-          text="Get Started"
-          onPress={handlePress}
-        />
+        <Button onPress={handlePress}>Get Started</Button>
       </LinearGradient>
     </ImageBackground>
   );
