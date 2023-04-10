@@ -10,15 +10,16 @@ import {
   View,
 } from "react-native";
 import React from "react";
-import Spacing from "../constants/Spacing";
-import Colors from "../constants/Colors";
+import AppText from "../components/AppText";
 import IconButton from "../components/IconButton";
-import FontSize from "../constants/FontSize";
+import Spacing from "../constants/Spacing";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../types";
 import { BlurView } from "expo-blur";
-import { Ionicons } from "@expo/vector-icons";
 import Font from "../constants/Font";
+import Colors from "../constants/Colors";
+import FontSize from "../constants/FontSize";
+import { Ionicons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import Button from "../components/Button";
 import Screen from "../components/Screen";
@@ -32,12 +33,15 @@ const PlanOverviewScreen: React.FC<Props> = ({
   const workout = route.params.workout;
   return (
     <Screen>
-      <ScrollView style={{ paddingHorizontal: Spacing.padding.base }}>
+      <ScrollView
+        style={{
+          paddingHorizontal: Spacing.padding.base,
+        }}
+      >
         <View
           style={{
-            flexDirection: "row",
-            paddingVertical: Spacing.padding.sm,
             alignItems: "center",
+            paddingVertical: Spacing.padding.base,
             justifyContent: "center",
           }}
         >
@@ -49,53 +53,43 @@ const PlanOverviewScreen: React.FC<Props> = ({
             }}
             name='chevron-back'
           />
-          <Text
-            style={{
-              color: Colors.text,
-              fontSize: FontSize.base,
-              textAlign: "center",
-            }}
-          >
-            PlanOverviewScreen
-          </Text>
+          <AppText>Plan Overview</AppText>
         </View>
         <ImageBackground
           source={workout.image}
           style={{
             height: 250,
-            width: "100%",
             marginVertical: Spacing.margin.lg,
             borderRadius: Spacing.borderRadius.base,
             overflow: "hidden",
             justifyContent: "space-between",
+            paddingVertical: Spacing.padding.base,
           }}
         >
           <View
             style={{
-              width: "100%",
+              paddingHorizontal: Spacing.padding.base,
               alignItems: "flex-end",
-              padding: Spacing.padding.sm,
             }}
           >
             <IconButton
               name='bookmark-outline'
               style={{
-                backgroundColor: Colors.background,
+                backgroundColor: Colors.primary,
                 borderWidth: 0,
-                borderRadius: Spacing.borderRadius.xl,
               }}
             />
           </View>
           <View
             style={{
-              margin: Spacing.margin.base,
               borderRadius: Spacing.borderRadius.base,
               overflow: "hidden",
+              marginHorizontal: Spacing.margin.lg,
             }}
           >
             <BlurView
-              intensity={Platform.OS === "android" ? 100 : 70}
               tint='dark'
+              intensity={Platform.OS === "android" ? 100 : 80}
               style={{
                 padding: Spacing.padding.base,
                 flexDirection: "row",
@@ -108,24 +102,22 @@ const PlanOverviewScreen: React.FC<Props> = ({
                   alignItems: "center",
                 }}
               >
-                <Text
+                <AppText
                   style={{
-                    fontSize: FontSize.lg,
-                    fontWeight: "700",
+                    fontFamily: Font["poppins-semiBold"],
                     color: Colors.accent,
-                    marginRight: Spacing.margin.sm,
+                    marginRight: Spacing.margin.base,
                   }}
                 >
                   {workout.minutes}
-                </Text>
-                <Text
+                </AppText>
+                <AppText
                   style={{
-                    color: Colors.text,
                     fontSize: FontSize.sm,
                   }}
                 >
                   minutes
-                </Text>
+                </AppText>
               </View>
               <View
                 style={{
@@ -133,24 +125,22 @@ const PlanOverviewScreen: React.FC<Props> = ({
                   alignItems: "center",
                 }}
               >
-                <Text
+                <AppText
                   style={{
-                    fontSize: FontSize.lg,
-                    fontWeight: "700",
+                    fontFamily: Font["poppins-semiBold"],
                     color: Colors.accent,
-                    marginRight: Spacing.margin.sm,
+                    marginRight: Spacing.margin.base,
                   }}
                 >
                   {workout.calories}
-                </Text>
-                <Text
+                </AppText>
+                <AppText
                   style={{
-                    color: Colors.text,
                     fontSize: FontSize.sm,
                   }}
                 >
-                  Calories
-                </Text>
+                  calories
+                </AppText>
               </View>
               <View
                 style={{
@@ -158,24 +148,22 @@ const PlanOverviewScreen: React.FC<Props> = ({
                   alignItems: "center",
                 }}
               >
-                <Text
+                <AppText
                   style={{
-                    fontSize: FontSize.lg,
-                    fontWeight: "700",
+                    fontFamily: Font["poppins-semiBold"],
                     color: Colors.accent,
-                    marginRight: Spacing.margin.sm,
+                    marginRight: Spacing.margin.base,
                   }}
                 >
                   {workout.exercises.length}
-                </Text>
-                <Text
+                </AppText>
+                <AppText
                   style={{
-                    color: Colors.text,
                     fontSize: FontSize.sm,
                   }}
                 >
-                  Exercises
-                </Text>
+                  exercises
+                </AppText>
               </View>
             </BlurView>
           </View>
@@ -183,182 +171,147 @@ const PlanOverviewScreen: React.FC<Props> = ({
         <View
           style={{
             flexDirection: "row",
+            alignItems: "center",
             justifyContent: "space-between",
           }}
         >
-          <Text
+          <AppText
             style={{
-              color: Colors.text,
               fontSize: FontSize.lg,
               fontFamily: Font["poppins-semiBold"],
             }}
           >
             {workout.name}
-          </Text>
+          </AppText>
           <View
             style={{
               flexDirection: "row",
               alignItems: "center",
-              paddingLeft: Spacing.padding.base,
             }}
           >
-            <Ionicons name='star' color={Colors.yellow} size={20} />
-            <Text
+            <Ionicons name='star' size={20} color={Colors.yellow} />
+            <AppText
               style={{
-                color: Colors.text,
-                marginLeft: Spacing.margin.base,
-                fontFamily: Font["poppins-regular"],
-                fontSize: FontSize.base,
+                marginLeft: Spacing.margin.sm,
               }}
             >
               {workout.rating}
-            </Text>
+            </AppText>
           </View>
         </View>
-        <Text
+        <AppText
           style={{
-            color: Colors.text,
-            fontSize: FontSize.sm,
-            fontFamily: Font["poppins-regular"],
-            marginVertical: Spacing.margin.sm,
+            marginTop: Spacing.margin.sm,
           }}
         >
           {workout.coach}
-        </Text>
-        <View
+        </AppText>
+        <AppText
           style={{
-            marginVertical: Spacing.margin.base,
+            marginTop: Spacing.margin.base,
+            fontFamily: Font["poppins-semiBold"],
           }}
         >
-          <Text
-            style={{
-              color: Colors.text,
-              fontSize: FontSize.base,
-              fontFamily: Font["poppins-semiBold"],
-              marginVertical: Spacing.margin.sm,
-            }}
-          >
-            Description
-          </Text>
-          <Text
-            numberOfLines={3}
-            style={{
-              color: Colors.text,
-              fontSize: FontSize.sm,
-              fontFamily: Font["poppins-regular"],
-              marginVertical: Spacing.margin.sm,
-            }}
-          >
-            {workout.description}
-          </Text>
-        </View>
-        <Text
+          Description
+        </AppText>
+        <AppText
+          numberOfLines={3}
           style={{
-            color: Colors.text,
-            fontSize: FontSize.base,
+            marginTop: Spacing.margin.sm,
+            fontFamily: Font["poppins-regular"],
+          }}
+        >
+          {workout.description}
+        </AppText>
+        <AppText
+          style={{
+            marginVertical: Spacing.margin.base,
             fontFamily: Font["poppins-semiBold"],
-            marginVertical: Spacing.margin.sm,
           }}
         >
           Exercises ({workout.exercises.length})
-        </Text>
-        <View
-          style={{
-            marginVertical: Spacing.margin.base,
-          }}
-        >
-          {workout.exercises.map((exercise) => (
-            <TouchableOpacity
-              key={exercise.id}
+        </AppText>
+
+        {workout.exercises.map((exercise) => (
+          <TouchableOpacity
+            style={{
+              backgroundColor: Colors.primary,
+              borderRadius: Spacing.borderRadius.base,
+              marginBottom: Spacing.margin.lg,
+              padding: Spacing.padding.base,
+              flexDirection: "row",
+            }}
+            key={exercise.id}
+          >
+            <Image
+              source={exercise.image}
               style={{
+                width: 100,
+                height: 100,
                 borderRadius: Spacing.borderRadius.base,
-                overflow: "hidden",
-                backgroundColor: Colors.primary,
-                marginRight: Spacing.margin.lg,
-                flexDirection: "row",
-                padding: Spacing.padding.sm,
-                marginBottom: Spacing.margin.lg,
-                width: "100%",
+              }}
+            />
+            <View
+              style={{
+                marginLeft: Spacing.margin.base,
+                justifyContent: "space-between",
               }}
             >
-              <Image
-                source={exercise.image}
+              <AppText
                 style={{
-                  width: 100,
-                  height: 80,
-                  borderRadius: Spacing.borderRadius.base,
-                }}
-              />
-              <View
-                style={{
-                  paddingHorizontal: Spacing.padding.base,
-                  justifyContent: "space-between",
+                  fontFamily: Font["poppins-semiBold"],
                 }}
               >
-                <Text
+                {exercise.name}
+              </AppText>
+              <View
+                style={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                }}
+              >
+                <Ionicons name='time-outline' size={16} color={Colors.text} />
+                <AppText
                   style={{
-                    color: Colors.text,
-                    fontSize: FontSize.base,
-                    fontWeight: "700",
+                    fontFamily: Font["poppins-regular"],
+                    marginLeft: Spacing.margin.sm,
                   }}
                 >
-                  {exercise.name}
-                </Text>
-                <View
-                  style={{
-                    flexDirection: "row",
-                    marginVertical: Spacing.margin.sm,
-                  }}
-                >
-                  <Ionicons name='time-outline' color={Colors.text} size={15} />
-                  <Text
-                    style={{
-                      color: Colors.text,
-                      fontSize: FontSize.sm,
-                      marginLeft: Spacing.margin.base,
-                    }}
-                  >
-                    {exercise.time} sec/ {exercise.set} set
-                  </Text>
-                </View>
-                <TouchableOpacity
-                  style={{
-                    flexDirection: "row",
-                    alignItems: "center",
-                  }}
-                >
-                  <Ionicons name='play' color={Colors.accent} size={15} />
-                  <Text
-                    style={{
-                      color: Colors.text,
-                      fontSize: FontSize.sm,
-                      marginLeft: Spacing.margin.sm,
-                    }}
-                  >
-                    Play
-                  </Text>
-                </TouchableOpacity>
+                  {exercise.time} / {exercise.set} set
+                </AppText>
               </View>
-            </TouchableOpacity>
-          ))}
-        </View>
+              <View
+                style={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                }}
+              >
+                <Ionicons name='play' size={16} color={Colors.accent} />
+                <AppText
+                  style={{
+                    fontFamily: Font["poppins-regular"],
+                    marginLeft: Spacing.margin.sm,
+                  }}
+                >
+                  Play
+                </AppText>
+              </View>
+            </View>
+          </TouchableOpacity>
+        ))}
       </ScrollView>
       <LinearGradient
         style={{
           position: "absolute",
           width: "100%",
-          paddingBottom: Spacing.padding.xl,
-          paddingHorizontal: Spacing.padding.base,
+          paddingBottom: Spacing.padding.xxl,
+          paddingTop: Spacing.padding.sm,
           bottom: 0,
+          paddingHorizontal: Spacing.padding.base,
         }}
-        colors={[`rgba(0,0,0,0)`, "#000"]}
+        colors={[`rgba(0,0,0,0)`, "black"]}
       >
-        <Button
-          text='Start Workout'
-          style={{
-            backgroundColor: Colors.accent,
-          }}
-        />
+        <Button>Start Workout</Button>
       </LinearGradient>
     </Screen>
   );
