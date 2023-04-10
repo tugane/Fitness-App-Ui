@@ -1,30 +1,23 @@
-import {
-  StyleProp,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-  ViewStyle,
-} from "react-native";
+import { StyleProp, TouchableOpacity, ViewStyle } from "react-native";
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
 import Spacing from "../constants/Spacing";
 import Colors from "../constants/Colors";
 
-type Props = {
-  onPress?: () => void;
+interface Props {
   style?: StyleProp<ViewStyle>;
-  name: keyof typeof Ionicons.glyphMap;
   size?: number;
   color?: string;
-};
+  name: keyof typeof Ionicons.glyphMap;
+  onPress?: () => void;
+}
 
 const IconButton: React.FC<Props> = ({
-  onPress,
   style,
-  name,
-  color = Colors.text,
   size = 24,
+  color = Colors.text,
+  name,
+  onPress,
 }) => {
   return (
     <TouchableOpacity
@@ -35,9 +28,9 @@ const IconButton: React.FC<Props> = ({
           width: 40,
           borderWidth: 1,
           borderColor: Colors.border,
-          borderRadius: Spacing.borderRadius.sm,
-          justifyContent: "center",
           alignItems: "center",
+          justifyContent: "center",
+          borderRadius: Spacing.borderRadius.base,
         },
         style,
       ]}
@@ -48,5 +41,3 @@ const IconButton: React.FC<Props> = ({
 };
 
 export default IconButton;
-
-const styles = StyleSheet.create({});

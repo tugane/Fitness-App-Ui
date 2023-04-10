@@ -8,38 +8,35 @@ import {
 import React, { useState } from "react";
 import FontSize from "../constants/FontSize";
 import Spacing from "../constants/Spacing";
-import { Category } from "../data";
+import { categories } from "../data";
+import AppText from "./AppText";
 import Colors from "../constants/Colors";
 
-type Props = {
-  categories: Category[];
-};
-
-const CategoryList: React.FC<Props> = ({ categories }) => {
-  const [activeCategory, setActiveCategory] = useState<number>(0);
+const CategoryList: React.FC = () => {
+  const [active, setActive] = useState<number>(0);
   return (
     <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-      {[{ id: 0, name: "All" }, ...categories].map((category, index) => (
+      {[{ id: 0, name: "All" }, ...categories].map((category) => (
         <TouchableOpacity
-          onPress={() => setActiveCategory(index)}
+          onPress={() => setActive(category.id)}
           style={{
             paddingHorizontal: Spacing.padding.base,
             paddingVertical: Spacing.padding.sm,
             backgroundColor:
-              activeCategory === index ? Colors.accent : Colors.primary,
-            borderRadius: Spacing.borderRadius.base,
+              active === category.id ? Colors.accent : Colors.primary,
             marginRight: Spacing.margin.base,
+            borderRadius: Spacing.borderRadius.base,
           }}
           key={category.id}
         >
-          <Text
+          <AppText
             style={{
-              color: activeCategory === index ? Colors.onAccent : Colors.text,
-              fontSize: FontSize.base,
+              color: active === category.id ? Colors.onAccent : Colors.text,
+              fontSize: FontSize.sm,
             }}
           >
             {category.name}
-          </Text>
+          </AppText>
         </TouchableOpacity>
       ))}
     </ScrollView>

@@ -13,4 +13,5 @@ export default {
   text: white,
   yellow,
   border: gray,
+  black,
 };
